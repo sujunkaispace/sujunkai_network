@@ -131,6 +131,7 @@ def page3():
                 message += str(k) + "#" + str(v) + "\n"
             message = message[:-1]
             f.write(message)
+
 def page4():
     st.title("留言板")
     st.write("如果没有显示你留言的内容，可以尝试刷新一下")
@@ -150,9 +151,13 @@ def page4():
     st.write("你的名字：")
     name_choose1,name_choose2 = st.tabs(["选择名字","自己输入"])
     with name_choose1:
-        name = st.selectbox('我是……', ["苏俊恺", "李鑫宇", "黄凯跃"])
+        name_1 = st.selectbox('我是……', ["苏俊恺", "李鑫宇", "黄凯跃"])
     with name_choose2:
-        name = st.text_input("请输入你的名字")
+        name_2 = st.text_input("请输入你的名字")
+    if name_2 != "":
+        name = name_2
+    else:
+        name = name_1
     new_message = st.text_input("想要说的话……")
     if st.button("留言"):
         messages_list.append([str(int(messages_list[-1][0])+1), name, new_message])
