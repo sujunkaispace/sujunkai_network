@@ -1,4 +1,3 @@
-SparkApi
 streamlit
 PIL
 time
