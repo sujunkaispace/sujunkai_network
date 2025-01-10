@@ -10,3 +10,4 @@ time
 wsgiref.handlers
 streamlit
 PIL
+upgrade pip
