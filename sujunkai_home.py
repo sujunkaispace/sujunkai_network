@@ -10,7 +10,7 @@ api_key ="63db2a6a11da05a18dd826e4c0365b37"    #填写控制台中获取的 APIK
 domain = "general"   # v1.5版本
 Spark_url = "ws://spark-api.xf-yun.com/v1.1/chat"  # v1.5环境的地址
 
-page = st.sidebar.radio("我的首页",["我的兴趣推荐","我的图片处理工具","我的智慧词典","我的留言区","我的智能助手"])
+page = st.sidebar.radio("我的首页",["我的兴趣推荐","我的图片处理工具","我的智慧词典","我的聊天区","我的智能助手"])
 
 def progress_bar(loading_message='正在加载',loading_time=0.01):
     loading = st.progress(0, '开始加载')
@@ -50,6 +50,9 @@ def page1():
     st.write("----")
     st.write("我也学习过书法，这是我练习书法时的一些照片")
     st.image("sujunkai_calligraphy.jpg")
+    st.write("----")
+    st.write("我也喜欢玩游戏，如果你和我一样喜欢玩Minecraft(我的世界)的话，点击下面的网址就可以在网页上玩")
+    st.link_button("MC网页版网址","https://b1.mc.js.cool")
     # st.audio("")
     # st.video("")
 def page2():
@@ -107,7 +110,7 @@ def page3():
     st.write("----")
     if word in words_dict:
         st.write(word+"的中文是：")
-        st.write(words_dict[word][1])
+        st.subheader(words_dict[word][1])
         n = words_dict[word][0]
         if n in times_dict:
             times_dict[n] += 1
@@ -131,10 +134,9 @@ def page3():
                 message += str(k) + "#" + str(v) + "\n"
             message = message[:-1]
             f.write(message)
-
 def page4():
-    st.title("留言板")
-    st.write("如果没有显示你留言的内容，可以尝试刷新一下")
+    st.title("聊天区")
+    st.write("如果没有显示你发送的内容，可以尝试刷新一下")
     with open("leave_messages.txt","r",encoding="utf-8") as f:
         messages_list = f.read().split("\n")
     for i in range(len(messages_list)):
@@ -159,7 +161,7 @@ def page4():
     else:
         name = name_1
     new_message = st.text_input("想要说的话……")
-    if st.button("留言"):
+    if st.button("发送"):
         messages_list.append([str(int(messages_list[-1][0])+1), name, new_message])
         with open("leave_messages.txt", "w", encoding="utf-8") as f:
             message = ""
@@ -182,7 +184,7 @@ elif page=="我的图片处理工具":
     page2()
 elif page=="我的智慧词典":
     page3()
-elif page=="我的留言区":
+elif page=="我的聊天区":
     page4()
 elif page=="我的智能助手":
     page5()
