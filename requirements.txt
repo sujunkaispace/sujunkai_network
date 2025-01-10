@@ -1,5 +1,4 @@
 thread
-base64
 datetime
 hashlib
 hmac
